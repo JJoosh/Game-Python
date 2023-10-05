@@ -29,6 +29,10 @@ class player(pygame.sprite.Sprite):
         if keystate[pygame.K_RIGHT]:
             self.speed_x = 5
         self.rect.x += self.speed_x
+        if self.rect.right > WIDTH:
+            self.rect.right = WIDTH
+        if self.rect.left < 0:
+            self.rect.left = 0
         
 all_sprites = pygame.sprite.Group()
 
