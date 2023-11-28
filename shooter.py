@@ -201,7 +201,7 @@ class Meteor_Explosion(pygame.sprite.Sprite):
 #defino pantalla de inicio
 def show_tittle_screen():
 	screen.blit(background, [0,0])
-	draw_text(screen, "Navecita", 80, WIDTH // 2, HEIGHT // 4)
+	draw_text(screen, "Stellar Storm", 80, WIDTH // 2, HEIGHT // 4)
 	draw_text(screen, "Movimiento: Izquierda/'a'  Derecha/'d'", 25, WIDTH // 2, HEIGHT // 2)
 	draw_text(screen, "Disparo: Barra espaciadora", 25, WIDTH // 2, HEIGHT // 2+25)
 	draw_text(screen, "Presionar cualquier tecla...", 25, WIDTH // 2, HEIGHT * 3/4)
