@@ -1,4 +1,5 @@
-import pygame, random, math
+import pygame, random, math, os
+
 
 WIDTH = 800
 HEIGHT = 600
@@ -18,7 +19,6 @@ bg = pygame.image.load("assets/background.png")
 background_rect = bg.get_rect()
 x = 0
 y = 0
-
 x1 = 0
 y1 = -HEIGHT
 
@@ -33,6 +33,16 @@ def draw_text(surface, text, size, x, y):
 	text_rect = text_surface.get_rect()
 	text_rect.midtop = (x, y)
 	surface.blit(text_surface, text_rect)
+ 
+#mostrar video en secuencia
+def mostrar_video(ruta, x, y):
+    imagenes = [pygame.image.load(os.path.join(ruta, archivo)) for archivo in sorted(os.listdir(ruta))]
+    
+    for imagen in imagenes:
+        screen.blit(imagen, (x, y))
+        pygame.display.flip()
+        pygame.time.delay(80)
+
 
 #CLASES
 
@@ -327,7 +337,7 @@ pygame.mixer.music.load("assets/music.ogg")
 pygame.mixer.music.set_volume(0.2)
 
 
-#pygame.mixer.music.play(loops=-1)
+pygame.mixer.music.play(loops=-1)
 
 #### ----------GAME OVER
 game_over = True
@@ -335,7 +345,8 @@ running = True
 while running:
 
 	if game_over:
-
+	
+		mostrar_video("assets/video1", 0, 0)
 		show_tittle_screen()	#menu principal
 
 		game_over = False
@@ -406,6 +417,7 @@ while running:
 		all_sprites.add(meteor)
 		meteor_list.add(meteor)
 		if player.shield <= 0:
+			mostrar_video("assets/video3", 0, 0)
 			show_game_over_screen()
 			game_over = True
 
@@ -429,6 +441,7 @@ while running:
 		alien_list.add(alien)
 		score_aux = score
 		if player.shield <= 0:
+			mostrar_video("assets/video3", 0, 0)
 			show_game_over_screen()
 			game_over = True
 
@@ -442,10 +455,10 @@ while running:
 	screen.blit(bg,(x1,y1))
 
 	if y > HEIGHT:
-    		y = -HEIGHT
+	    y = -HEIGHT
         
 	if y1 > HEIGHT:
-    		y1 = -HEIGHT
+		y1 = -HEIGHT
 
 	
 	all_sprites.draw(screen)
